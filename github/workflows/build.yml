@@ -1,0 +1,15 @@
+name: Build EBU ISO
+on: workflow_dispatch
+jobs:
+  iso:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Disk ac
+        run: sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android
+      - name: ISO uret
+        run: sudo PROFILE=lite bash build-ebu-iso.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ebu-os-iso
+          path: ebu/ebu-os-1.0-amd64.iso
